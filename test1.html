@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <span id="show">Loading...</span>
+<script type="text/javascript">
+function count_down(o){
+        var www_qsyz_net=/^[\d]{4}-[\d]{1,2}-[\d]{1,2}( [\d]{1,2}:[\d]{1,2}(:[\d]{1,2})?)?$/ig,str='',conn,s;
+        // 检验时间格式
+        if(!o.match(www_qsyz_net)){
+                alert('参数格式为2012-01-01[ 01:01[:01]].\r其中[]内的内容可省略');
+                return false;
+        }
+        // 结束
+        var sec=(new Date(o.replace(/-/ig,'/')).getTime() - new Date().getTime())/1000;
+        if(sec > 0){
+                conn='还有';
+        }else{
+                conn='已过去';
+                sec*=-1;
+        }
+        s={'天':sec/24/3600,'小时':sec/3600%24,'分':sec/60%60,'秒':sec%60};
+        for(i in s){
+                if(Math.floor(s[i])>0 ) str += Math.floor(s[i]) + i;
+        }
+        if(Math.floor(sec)==0){ str='0秒'; }
+        document.getElementById('show').innerHTML = '距离' + o +'&nbsp&nbsp'+ conn  + str ;
+        setTimeout(function(){count_down(o)},1000);
+}
+count_down('2015-05-20 10:49:04');
+</script>
+
+</html>
